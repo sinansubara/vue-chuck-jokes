@@ -22,7 +22,12 @@ export default {
       },
       [types.REMOVE_FAVORITE_JOKE](state, payload) {
         state.favorites = state.favorites.filter( joke => joke.id != payload);
-        localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
+        if(state.favorites.length > 0){
+          localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
+        }else{
+          localStorage.removeItem('CHUCKNORRIS_KEY');
+        }
+        
       },
       [types.SEARCH_JOKE](state, value) {
         state.search = value;
