@@ -4,10 +4,10 @@
       <div class="row" v-for="(jokes, index) in $store.getters.searchJokes" :key="index">
         <div class="col s12 m5">
           <div class="card-panel teal">
-            <a class="btn-floating btn-small waves-effect waves-light right orng" v-if="!jokes.favorite" @click="changeFavorites(jokes)" title="ADD TO FAVORITES">
+            <a class="btn-floating btn-small waves-effect waves-light right orng" v-if="!jokes.favorite" @click="addToFavorites(jokes)" title="ADD TO FAVORITES">
               <i class="material-icons">add</i>
             </a>
-            <a class="btn-floating btn-small waves-effect waves-light right orng" v-else @click="changeFavorites(jokes, index)" title="REMOVE FROM FAVORITES">
+            <a class="btn-floating btn-small waves-effect waves-light right orng" v-else @click="removeFromFavorites(jokes)" title="REMOVE FROM FAVORITES">
               <i class="material-icons">remove</i>
             </a>
             <span class="white-text">{{ jokes.text }}</span>
@@ -20,6 +20,7 @@
 
 <script>
 import Masonry from 'masonry-layout';
+import uuid from 'uuid';
 
 export default {
   mounted() {
@@ -37,9 +38,14 @@ export default {
     }
   },
   methods: {
-    changeFavorites(joke, index) {
-      joke.index = index;
-      this.$store.dispatch('addToFavorites', joke);
+    addToFavorites(joke) {
+      joke.favorite = true;
+      joke.id = uuid.v4();
+      this.$store.dispatch('addFavJoke', joke);
+    },
+    removeFromFavorites(joke) {
+      joke.favorite = false;
+      this.$store.dispatch('removeFavJoke', joke.id);
     }
   }
 }

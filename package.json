@@ -14,6 +14,7 @@
     "material-icons": "^0.5.4",
     "materialize": "^1.0.0",
     "materialize-css": "^1.0.0-rc.1",
+    "uuid": "^3.4.0",
     "vue": "^2.6.11",
     "vuex": "^3.4.0"
   },

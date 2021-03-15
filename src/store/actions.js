@@ -25,7 +25,10 @@ export default {
             });
           });
       },
-      addToFavorites({ commit }, joke) {
-        commit(types.ADD_TO_FAVORITES, joke);
+      addFavJoke({ commit }, joke) {
+        commit(types.ADD_FAVORITE_JOKE, joke);
+      },
+      removeFavJoke({ commit }, id) {
+        commit(types.REMOVE_FAVORITE_JOKE, id);
       }
 }

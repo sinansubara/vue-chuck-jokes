@@ -5,21 +5,24 @@ export default {
         state.categories = [...state.categories, ...payload];
       },
       [types.GET_RANDJOKE](state, payload) {
-        state.jokes = [...state.jokes, payload];
+        const checkJokeDuplicate = state.jokes.find( joke => joke.text == payload.text);
+        if(!checkJokeDuplicate){
+          state.jokes = [...state.jokes, payload];
+        }
       },
       [types.GET_JOKE](state, payload) {
-        state.jokes = [...state.jokes, payload];
-      },
-      [types.ADD_TO_FAVORITES](state, joke) {
-        if(joke.favorite){
-          state.jokes.splice(joke.index, 1);
-          state.favorites.splice(joke.index, 1);
-          localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
-        }else{
-          state.favorites = [...state.favorites, joke];
-          joke.favorite = true;
-          localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
+        const checkJokeDuplicate = state.jokes.find( joke => joke.text == payload.text);
+        if(!checkJokeDuplicate){
+          state.jokes = [...state.jokes, payload];
         }
+      },
+      [types.ADD_FAVORITE_JOKE](state, payload) {
+        state.favorites = [...state.favorites, payload];
+        localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
+      },
+      [types.REMOVE_FAVORITE_JOKE](state, payload) {
+        state.favorites = state.favorites.filter( joke => joke.id != payload);
+        localStorage.setItem('CHUCKNORRIS_KEY', JSON.stringify([...state.favorites]));
       },
       [types.SEARCH_JOKE](state, value) {
         state.search = value;

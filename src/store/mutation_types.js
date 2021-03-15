@@ -2,6 +2,7 @@ export default {
     GET_CATEGORIES: 'getCategories',
     GET_RANDJOKE: 'getRandJoke',
     GET_JOKE: 'getJoke',
-    ADD_TO_FAVORITES: 'addToFavorites',
+    ADD_FAVORITE_JOKE: 'addFavJoke',
+    REMOVE_FAVORITE_JOKE: 'removeFavJoke',
     SEARCH_JOKE: 'searchJoke'
 }

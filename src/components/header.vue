@@ -2,7 +2,7 @@
   <div class="navbar-fixed">
     <ul id="dropdown1" class="dropdown-content">
       <li v-for="(category, index) in categories" :key="index" >
-        <a href="#" @click="selectCat(category)">{{ category }}</a>
+        <a @click="selectCat(category)">{{ category }}</a>
       </li>
     </ul>
     <nav>
@@ -13,7 +13,7 @@
         <ul>
           <li class="dropBtn">
             <a class="dropdown-trigger waves-effect waves-orange"
-                href="#" data-target="dropdown1">Chuckdown
+                data-target="dropdown1">Chuckdown
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
