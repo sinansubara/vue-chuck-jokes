@@ -52,11 +52,11 @@ export default {
     removeCategory(){
       this.selectCategorie = '';
     },
-    getJoke() {
+    async getJoke() {
       if (this.selectCategorie === '') {
-        this.$store.dispatch('getRandJoke');
+        await this.$store.dispatch('getRandJoke');
       } else {
-        this.$store.dispatch('getJoke', this.selectCategorie);
+        await this.$store.dispatch('getJoke', this.selectCategorie);
       }
     }
   },
